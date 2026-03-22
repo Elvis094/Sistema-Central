@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@color/bg_dark"
+    android:padding="24dp"
+    android:paddingTop="48dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="PANEL DE CONTROL"
+        android:textColor="@color/neon_purple"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="40dp" />
+
+    <Button
+        android:id="@+id/btnCrearUsuario"
+        style="@style/FuturisticButton"
+        android:text="CREAR NUEVO USUARIO" />
+
+    <Button
+        android:id="@+id/btnVerBaseDatos"
+        style="@style/FuturisticButton"
+        android:backgroundTint="@color/neon_cyan"
+        android:textColor="@color/bg_dark"
+        android:text="VER BASE DE DATOS" />
+
+    <Button
+        android:id="@+id/btnModificarUsuarios"
+        style="@style/FuturisticButton"
+        android:backgroundTint="@color/neon_purple"
+        android:text="MODIFICAR / ELIMINAR" />
+
+    <Button
+        android:id="@+id/btnCerrarSesionAdmin"
+        style="@style/FuturisticButton"
+        android:backgroundTint="@color/red_error"
+        android:layout_marginTop="32dp"
+        android:text="CERRAR SESIÓN" />
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabBuscarUsuario"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="24dp"
+        android:backgroundTint="@color/neon_cyan"
+        android:src="@android:drawable/ic_menu_search"
+        app:tint="#000000"
+        android:tint="@color/bg_dark"
+        android:contentDescription="Buscar Usuario" />
+</LinearLayout>

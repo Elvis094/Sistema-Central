@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@color/bg_dark"
+    android:padding="24dp"
+    android:paddingTop="48dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="MIS GUSTOS"
+        android:textColor="@color/neon_purple"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="16dp" />
+
+    <EditText
+        android:id="@+id/etNuevoGusto"
+        style="@style/FuturisticEditText"
+        android:hint="Ej. Cine, Programar, Música" />
+
+    <Button
+        android:id="@+id/btnAgregarGusto"
+        style="@style/FuturisticButton"
+        android:backgroundTint="@color/neon_cyan"
+        android:textColor="@color/bg_dark"
+        android:text="AGREGAR GUSTO"
+        android:layout_marginBottom="24dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Gustos Registrados:"
+        android:textColor="@color/neon_cyan"
+        android:layout_marginBottom="8dp"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/tvListaGustos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/text_light"
+            android:textSize="18sp" />
+    </ScrollView>
+</LinearLayout>

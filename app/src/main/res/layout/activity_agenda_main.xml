@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@color/bg_dark"
+    android:padding="24dp"
+    android:paddingTop="48dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="MI AGENDA PERSONAL"
+        android:textColor="@color/neon_purple"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="40dp" />
+
+    <Button
+        android:id="@+id/btnAgendaInfoPersonal"
+        style="@style/FuturisticButton"
+        android:text="INFORMACIÓN PERSONAL" />
+
+    <Button
+        android:id="@+id/btnAgendaGustos"
+        style="@style/FuturisticButton"
+        android:backgroundTint="@color/neon_cyan"
+        android:textColor="@color/bg_dark"
+        android:text="MIS GUSTOS" />
+
+    <Button
+        android:id="@+id/btnAgendaPreferencias"
+        style="@style/FuturisticButton"
+        android:backgroundTint="@color/neon_cyan"
+        android:textColor="@color/bg_dark"
+        android:text="MIS PREFERENCIAS" />
+
+    <Button
+        android:id="@+id/btnVolverUserMain"
+        style="@style/FuturisticButton"
+        android:backgroundTint="@color/neon_purple"
+        android:layout_marginTop="32dp"
+        android:text="VOLVER AL MENÚ PRINCIPAL" />
+</LinearLayout>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@color/bg_dark"
+    android:padding="24dp"
+    android:paddingTop="48dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="REGISTRAR CREDENCIALES"
+        android:textColor="@color/neon_cyan"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="24dp" />
+
+    <EditText
+        android:id="@+id/etCrearCedula"
+        style="@style/FuturisticEditText"
+        android:hint="Cédula (Será su ID de inicio)"
+        android:inputType="number" />
+
+    <EditText
+        android:id="@+id/etCrearNombre"
+        style="@style/FuturisticEditText"
+        android:hint="Nombre completo" />
+
+    <EditText
+        android:id="@+id/etCrearContrasena"
+        style="@style/FuturisticEditText"
+        android:hint="Asignar Contraseña"
+        android:inputType="textPassword" />
+
+    <Button
+        android:id="@+id/btnGuardarNuevoUsuario"
+        style="@style/FuturisticButton"
+        android:backgroundTint="@color/neon_cyan"
+        android:textColor="@color/bg_dark"
+        android:text="GUARDAR USUARIO"
+        android:layout_marginTop="16dp"/>
+</LinearLayout>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@color/bg_dark"
+    android:padding="24dp"
+    android:paddingTop="48dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="MODIFICAR USUARIO"
+        android:textColor="@color/neon_purple"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="24dp" />
+
+    <EditText
+        android:id="@+id/etModificarBusquedaCedula"
+        style="@style/FuturisticEditText"
+        android:backgroundTint="@color/neon_cyan"
+        android:textColor="@color/neon_cyan"
+        android:hint="Ingrese Cédula a buscar"
+        android:inputType="number" />
+
+    <Button
+        android:id="@+id/btnModificarBuscar"
+        style="@style/FuturisticButton"
+        android:backgroundTint="@color/neon_cyan"
+        android:textColor="@color/bg_dark"
+        android:text="BUSCAR USUARIO"
+        android:layout_marginBottom="32dp" />
+
+    <LinearLayout
+        android:id="@+id/layoutDatosModificar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Datos del Usuario:"
+            android:textColor="@color/text_light"
+            android:layout_marginBottom="8dp" />
+
+        <EditText android:id="@+id/etModificarNombre" style="@style/FuturisticEditText" android:hint="Nuevo Nombre" />
+        <EditText android:id="@+id/etModificarContrasena" style="@style/FuturisticEditText" android:hint="Nueva Contraseña" />
+
+        <Button
+            android:id="@+id/btnGuardarModificacion"
+            style="@style/FuturisticButton"
+            android:text="ACTUALIZAR DATOS" />
+
+        <Button
+            android:id="@+id/btnEliminarUsuario"
+            style="@style/FuturisticButton"
+            android:backgroundTint="@color/red_error"
+            android:layout_marginTop="16dp"
+            android:text="ELIMINAR USUARIO DEFINITIVAMENTE" />
+    </LinearLayout>
+</LinearLayout>

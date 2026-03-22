@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="Theme.MiAppFuturista" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/neon_cyan</item>
+        <item name="colorOnPrimary">@color/bg_dark</item>
+        <item name="colorSecondary">@color/neon_purple</item>
+        <item name="colorOnSecondary">@color/text_light</item>
+        <item name="android:statusBarColor">@color/bg_dark</item>
+    </style>
+
+    <style name="FuturisticEditText" parent="Widget.AppCompat.EditText">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/text_light</item>
+        <item name="android:textColorHint">@color/text_muted</item>
+        <item name="android:backgroundTint">@color/neon_purple</item>
+        <item name="android:padding">12dp</item>
+        <item name="android:layout_marginBottom">16dp</item>
+        <item name="android:focusable">true</item>
+        <item name="android:focusableInTouchMode">true</item>
+        <item name="android:cursorVisible">true</item>
+    </style>
+
+    <style name="FuturisticButton" parent="Widget.AppCompat.Button">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/bg_dark</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:padding">12dp</item>
+        <item name="android:layout_marginBottom">12dp</item>
+        <item name="cornerRadius">8dp</item>
+    </style>
+
+    <style name="CalculadoraBotonBase" parent="Widget.MaterialComponents.Button">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">80dp</item>
+        <item name="android:layout_margin">4dp</item>
+        <item name="android:layout_columnWeight">1</item>
+        <item name="android:textSize">28sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="cornerRadius">40dp</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+    </style>
+
+    <style name="CalculadoraBotonBase.Numero" parent="CalculadoraBotonBase">
+        <item name="backgroundTint">@color/gray_dark</item>
+        <item name="android:textColor">@color/text_light</item>
+    </style>
+
+    <style name="CalculadoraBotonBase.Operador" parent="CalculadoraBotonBase">
+        <item name="backgroundTint">@color/gray_calc</item>
+        <item name="android:textColor">@color/neon_cyan</item>
+    </style>
+
+    <style name="CalculadoraBotonBase.Igual" parent="CalculadoraBotonBase">
+        <item name="backgroundTint">@color/neon_cyan</item>
+        <item name="android:textColor">@color/bg_dark</item>
+    </style>
+</resources>

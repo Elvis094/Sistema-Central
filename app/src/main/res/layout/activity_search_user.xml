@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/bg_dark"
+    android:padding="24dp"
+    android:paddingTop="48dp"> <TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="BUSCADOR DEL SISTEMA"
+    android:textColor="@color/neon_cyan"
+    android:textSize="28sp"
+    android:textStyle="bold"
+    android:layout_gravity="center_horizontal"
+    android:layout_marginBottom="24dp"
+    android:fitsSystemWindows="true"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="24dp">
+
+        <EditText
+            android:id="@+id/etBuscarCedula"
+            style="@style/FuturisticEditText"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_marginBottom="0dp"
+            android:paddingTop="48dp"
+            android:hint="Cédula a consultar..."
+            android:inputType="number" />
+
+        <Button
+            android:id="@+id/btnBuscarUsuario"
+            style="@style/FuturisticButton"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="0dp"
+            android:layout_marginStart="8dp"
+            android:backgroundTint="@color/neon_purple"
+            android:text="BUSCAR" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:id="@+id/containerResultados"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone"> <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardBackgroundColor="@color/card_bg"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="4dp"
+            app:strokeColor="@color/neon_cyan"
+            app:strokeWidth="1dp"
+            android:layout_marginBottom="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" Datos Personales "
+                    android:textColor="@color/neon_cyan"
+                    android:textStyle="bold"
+                    android:textSize="18sp"
+                    android:layout_marginBottom="12dp"/>
+
+                <TextView android:id="@+id/tvResCedula" android:layout_width="match_parent" android:layout_height="wrap_content" android:textColor="@color/text_light" android:textSize="16sp" android:layout_marginBottom="4dp"/>
+                <TextView android:id="@+id/tvResNombre" android:layout_width="match_parent" android:layout_height="wrap_content" android:textColor="@color/text_light" android:textSize="16sp" android:layout_marginBottom="4dp"/>
+                <TextView android:id="@+id/tvResTelefono" android:layout_width="match_parent" android:layout_height="wrap_content" android:textColor="@color/text_light" android:textSize="16sp" android:layout_marginBottom="4dp"/>
+                <TextView android:id="@+id/tvResCorreo" android:layout_width="match_parent" android:layout_height="wrap_content" android:textColor="@color/text_light" android:textSize="16sp"/>
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardBackgroundColor="@color/card_bg"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="4dp"
+                app:strokeColor="@color/neon_purple"
+                app:strokeWidth="1dp"
+                android:layout_marginBottom="16dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=" Gustos y Preferencias "
+                        android:textColor="@color/neon_purple"
+                        android:textStyle="bold"
+                        android:textSize="18sp"
+                        android:layout_marginBottom="12dp"/>
+
+                    <TextView android:id="@+id/tvResGustos" android:layout_width="match_parent" android:layout_height="wrap_content" android:textColor="@color/text_light" android:textSize="16sp" android:layout_marginBottom="8dp"/>
+                    <TextView android:id="@+id/tvResPreferencias" android:layout_width="match_parent" android:layout_height="wrap_content" android:textColor="@color/text_light" android:textSize="16sp"/>
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+        </LinearLayout>
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/tvEstadoEspera"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="Esperando consulta...\nIngrese una cédula arriba."
+        android:textColor="@color/text_muted"
+        android:textSize="18sp"
+        android:layout_gravity="center_horizontal"
+        android:visibility="visible"/>
+
+</LinearLayout>

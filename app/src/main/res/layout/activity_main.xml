@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@color/bg_dark"
+    android:padding="24dp"
+    android:paddingTop="48dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SISTEMA CENTRAL"
+        android:textColor="@color/neon_cyan"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="40dp" />
+
+    <Button
+        android:id="@+id/btnSoyAdmin"
+        style="@style/FuturisticButton"
+        android:backgroundTint="@color/neon_purple"
+        android:text="SOY ADMINISTRADOR" />
+
+    <Button
+        android:id="@+id/btnSoyUsuario"
+        style="@style/FuturisticButton"
+        android:text="SOY USUARIO"
+        android:layout_marginTop="16dp" />
+</LinearLayout>

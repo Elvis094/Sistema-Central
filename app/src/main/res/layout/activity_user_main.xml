@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_dark"
+    android:padding="24dp"
+    android:fitsSystemWindows="true"> <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:layout_centerInParent="true"> <TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="BIENVENIDO"
+    android:textColor="@color/neon_cyan"
+    android:textSize="32sp"
+    android:textStyle="bold"
+    android:layout_marginBottom="8dp" />
+
+    <TextView
+        android:id="@+id/tvUserIdDisplay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Usuario ID: -"
+        android:textColor="@color/text_light"
+        android:textSize="16sp"
+        android:layout_marginBottom="60dp" />
+
+    <Button
+        android:id="@+id/btnIrCalculadora"
+        style="@style/FuturisticButton"
+        android:text="CALCULADORA" />
+
+    <Button
+        android:id="@+id/btnIrAgenda"
+        style="@style/FuturisticButton"
+        android:backgroundTint="@color/neon_purple"
+        android:text="AGENDA PERSONAL" />
+
+    <Button
+        android:id="@+id/btnCerrarSesion"
+        style="@style/FuturisticButton"
+        android:backgroundTint="@color/red_error"
+        android:layout_marginTop="32dp"
+        android:text="CERRAR SESIÓN" />
+</LinearLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabBuscarUsuario"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="48dp" android:layout_marginEnd="32dp"    app:backgroundTint="@color/neon_cyan"
+        android:src="@android:drawable/ic_menu_search"
+        app:tint="#000000"
+        android:contentDescription="Buscar Usuario" />
+
+</RelativeLayout>
