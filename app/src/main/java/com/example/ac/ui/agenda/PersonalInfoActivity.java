@@ -10,7 +10,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.ac.R;
 import com.example.ac.models.AgendaUser;
 import com.example.ac.models.InformacionPersonal;
-import com.example.ac.models.UsuarioCredencial;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
@@ -20,9 +19,8 @@ public class PersonalInfoActivity extends AppCompatActivity {
 
     private String userId;
     private ArrayList<AgendaUser> listaAgendas;
-    private ArrayList<UsuarioCredencial> listaCredenciales;
 
-    // Variables (Ya no existe etApellidos)
+    // Componentes de la interfaz
     private EditText etNombre, etTelefono, etDireccion, etLugar, etCorreo, etSangre, etAnio;
     private RadioGroup rgGenero;
     private RadioButton rbFemenino, rbMasculino;
@@ -32,8 +30,11 @@ public class PersonalInfoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_personal_info);
 
-        userId = getIntent().getStringExtra("user_id");
+        // 1. RECUPERAR ID DE SESIÓN (Esto evita que userId sea null)
+        SharedPreferences session = getSharedPreferences("SesionActiva", MODE_PRIVATE);
+        userId = session.getString("cedula_logueada", "");
 
+        // 2. VINCULAR VISTAS
         etNombre = findViewById(R.id.etInfoNombre);
         etTelefono = findViewById(R.id.etInfoTelefono);
         rgGenero = findViewById(R.id.rgInfoGenero);
@@ -45,26 +46,25 @@ public class PersonalInfoActivity extends AppCompatActivity {
         etSangre = findViewById(R.id.etInfoSangre);
         etAnio = findViewById(R.id.etInfoAnio);
 
+        // 3. CARGAR BASE DE DATOS Y MOSTRAR INFORMACIÓN
         cargarAgendas();
-        cargarCredenciales();
-
         mostrarDatosSiExisten();
 
+        // 4. BOTÓN GUARDAR
         findViewById(R.id.btnGuardarInfoPersonal).setOnClickListener(v -> guardarDatos());
     }
 
     private void mostrarDatosSiExisten() {
         boolean infoEncontrada = false;
 
+        // Intentamos buscar en la lista de agendas guardadas
         for (AgendaUser user : listaAgendas) {
             if (user.getCedula().equals(userId) && user.getInformacionPersonal() != null) {
                 InformacionPersonal info = user.getInformacionPersonal();
                 etNombre.setText(info.getNombre());
                 etTelefono.setText(info.getNumero());
 
-                if ("Femenino".equals(info.getGenero())) {
-                    rbFemenino.setChecked(true);
-                } else if ("Masculino".equals(info.getGenero())) {
+                if ("Masculino".equals(info.getGenero())) {
                     rbMasculino.setChecked(true);
                 } else {
                     rbFemenino.setChecked(true);
@@ -81,31 +81,20 @@ public class PersonalInfoActivity extends AppCompatActivity {
             }
         }
 
-        // AUTOCOMPLETADO DIRECTO Y LIMPIO
+        // SI NO HAY INFO EN AGENDA: Recuperamos el nombre desde el registro original
         if (!infoEncontrada) {
-            for (UsuarioCredencial cred : listaCredenciales) {
-                if (cred.getCedula().equals(userId)) {
-                    // Ponemos exactamente lo que el Admin escribió
-                    etNombre.setText(cred.getNombre());
-                    rbFemenino.setChecked(true);
-                    break;
-                }
-            }
+            SharedPreferences usuariosPrefs = getSharedPreferences("MisUsuarios", MODE_PRIVATE);
+            String nombreRegistro = usuariosPrefs.getString(userId + "_nombre", "Usuario");
+            etNombre.setText(nombreRegistro);
+            rbFemenino.setChecked(true); // Valor por defecto
         }
     }
 
     private void guardarDatos() {
-        String gender;
-        int selectedId = rgGenero.getCheckedRadioButtonId();
-        if (selectedId == rbFemenino.getId()) {
-            gender = "Femenino";
-        } else if (selectedId == rbMasculino.getId()) {
-            gender = "Masculino";
-        } else {
-            gender = "Femenino";
-        }
+        // Validar género seleccionado
+        String gender = (rgGenero.getCheckedRadioButtonId() == rbMasculino.getId()) ? "Masculino" : "Femenino";
 
-        // Creamos la nueva info SIN el parámetro de apellidos
+        // Crear objeto con la nueva información
         InformacionPersonal nuevaInfo = new InformacionPersonal(
                 etNombre.getText().toString().trim(),
                 etTelefono.getText().toString().trim(),
@@ -117,23 +106,29 @@ public class PersonalInfoActivity extends AppCompatActivity {
                 etAnio.getText().toString().trim()
         );
 
-        boolean encontrado = false;
+        // Actualizar el usuario en la lista
+        boolean actualizado = false;
         for (AgendaUser user : listaAgendas) {
             if (user.getCedula().equals(userId)) {
                 user.setInformacionPersonal(nuevaInfo);
-                encontrado = true;
+                actualizado = true;
                 break;
             }
         }
 
-        if (!encontrado) {
+        // Si es un usuario nuevo en la agenda, lo añadimos
+        if (!actualizado) {
             AgendaUser nuevoUser = new AgendaUser(userId);
             nuevoUser.setInformacionPersonal(nuevaInfo);
             listaAgendas.add(nuevoUser);
         }
 
+        // GUARDAR EN PREFERENCES USANDO GSON
         SharedPreferences prefs = getSharedPreferences("BaseDatosAgenda", MODE_PRIVATE);
-        prefs.edit().putString("agendas_guardadas", new Gson().toJson(listaAgendas)).apply();
+        SharedPreferences.Editor editor = prefs.edit();
+        String json = new Gson().toJson(listaAgendas);
+        editor.putString("agendas_guardadas", json);
+        editor.apply();
 
         Toast.makeText(this, "Información Personal Actualizada", Toast.LENGTH_SHORT).show();
         finish();
@@ -144,14 +139,9 @@ public class PersonalInfoActivity extends AppCompatActivity {
         String json = prefs.getString("agendas_guardadas", null);
         Type type = new TypeToken<ArrayList<AgendaUser>>() {}.getType();
         listaAgendas = new Gson().fromJson(json, type);
-        if (listaAgendas == null) listaAgendas = new ArrayList<>();
-    }
 
-    private void cargarCredenciales() {
-        SharedPreferences prefs = getSharedPreferences("CredencialesUsuarios", MODE_PRIVATE);
-        String json = prefs.getString("credenciales_guardadas", null);
-        Type type = new TypeToken<ArrayList<UsuarioCredencial>>() {}.getType();
-        listaCredenciales = new Gson().fromJson(json, type);
-        if (listaCredenciales == null) listaCredenciales = new ArrayList<>();
+        if (listaAgendas == null) {
+            listaAgendas = new ArrayList<>();
+        }
     }
 }

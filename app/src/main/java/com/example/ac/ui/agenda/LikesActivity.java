@@ -2,25 +2,20 @@ package com.example.ac.ui.agenda;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.widget.EditText;
-import android.widget.TextView;
+import android.widget.CheckBox;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.ac.R;
-import com.example.ac.models.AgendaUser;
 import com.example.ac.models.Gusto;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.List;
 
 public class LikesActivity extends AppCompatActivity {
-
+    private CheckBox cbCarros, cbMotos, cbMusica, cbComida, cbDeportes, cbMaterias, cbVideojuegos, cbViajes;
     private String userId;
-    private ArrayList<AgendaUser> listaAgendas;
-    private AgendaUser usuarioActual;
-    private TextView tvListaGustos;
-    private EditText etNuevoGusto;
+    private Gson gson = new Gson();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,56 +23,57 @@ public class LikesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_likes);
 
         userId = getIntent().getStringExtra("user_id");
-        tvListaGustos = findViewById(R.id.tvListaGustos);
-        etNuevoGusto = findViewById(R.id.etNuevoGusto);
 
-        cargarAgendas();
-        buscarUsuarioActual();
-        actualizarPantalla();
+        cbCarros = findViewById(R.id.cbCarros);
+        cbMotos = findViewById(R.id.cbMotos);
+        cbMusica = findViewById(R.id.cbMusica);
+        cbComida = findViewById(R.id.cbComida);
+        cbDeportes = findViewById(R.id.cbDeportes);
+        cbMaterias = findViewById(R.id.cbMaterias);
+        cbVideojuegos = findViewById(R.id.cbVideojuegos);
+        cbViajes = findViewById(R.id.cbViajes);
 
-        findViewById(R.id.btnAgregarGusto).setOnClickListener(v -> {
-            String textoGusto = etNuevoGusto.getText().toString().trim();
-            if (!textoGusto.isEmpty()) {
-                String id = String.valueOf(System.currentTimeMillis());
-                usuarioActual.getGustos().add(new Gusto(id, textoGusto));
-                guardarCambios();
-                actualizarPantalla();
-                etNuevoGusto.setText("");
-            } else {
-                Toast.makeText(this, "Escribe un gusto primero", Toast.LENGTH_SHORT).show();
-            }
-        });
+        cargarGustos();
+
+        findViewById(R.id.btnGuardarGustos).setOnClickListener(v -> guardarGustos());
     }
 
-    private void buscarUsuarioActual() {
-        for (AgendaUser user : listaAgendas) {
-            if (user.getCedula().equals(userId)) {
-                usuarioActual = user;
-                return;
+    private void guardarGustos() {
+        ArrayList<Gusto> gustosSeleccionados = new ArrayList<>();
+        if (cbCarros.isChecked()) gustosSeleccionados.add(new Gusto("carros", "Carros"));
+        if (cbMotos.isChecked()) gustosSeleccionados.add(new Gusto("motos", "Motos"));
+        if (cbMusica.isChecked()) gustosSeleccionados.add(new Gusto("musica", "Música"));
+        if (cbComida.isChecked()) gustosSeleccionados.add(new Gusto("comida", "Comida"));
+        if (cbDeportes.isChecked()) gustosSeleccionados.add(new Gusto("deportes", "Deportes"));
+        if (cbMaterias.isChecked()) gustosSeleccionados.add(new Gusto("materias", "Materias"));
+        if (cbVideojuegos.isChecked()) gustosSeleccionados.add(new Gusto("videojuegos", "Videojuegos"));
+        if (cbViajes.isChecked()) gustosSeleccionados.add(new Gusto("viajes", "Viajes"));
+
+        SharedPreferences.Editor editor = getSharedPreferences("UserPrefs", MODE_PRIVATE).edit();
+        editor.putString("gustos_" + userId, gson.toJson(gustosSeleccionados));
+        editor.apply();
+
+        Toast.makeText(this, "Gustos guardados correctamente", Toast.LENGTH_SHORT).show();
+        finish();
+    }
+
+    private void cargarGustos() {
+        SharedPreferences prefs = getSharedPreferences("UserPrefs", MODE_PRIVATE);
+        String json = prefs.getString("gustos_" + userId, null);
+        if (json != null) {
+            ArrayList<Gusto> gustos = gson.fromJson(json, new TypeToken<ArrayList<Gusto>>(){}.getType());
+            for (Gusto g : gustos) {
+                switch (g.getId()) {
+                    case "carros": cbCarros.setChecked(true); break;
+                    case "motos": cbMotos.setChecked(true); break;
+                    case "musica": cbMusica.setChecked(true); break;
+                    case "comida": cbComida.setChecked(true); break;
+                    case "deportes": cbDeportes.setChecked(true); break;
+                    case "materias": cbMaterias.setChecked(true); break;
+                    case "videojuegos": cbVideojuegos.setChecked(true); break;
+                    case "viajes": cbViajes.setChecked(true); break;
+                }
             }
         }
-        usuarioActual = new AgendaUser(userId);
-        listaAgendas.add(usuarioActual);
-    }
-
-    private void actualizarPantalla() {
-        StringBuilder sb = new StringBuilder();
-        for (Gusto g : usuarioActual.getGustos()) {
-            sb.append("• ").append(g.getDescripcion()).append("\n");
-        }
-        tvListaGustos.setText(sb.toString().isEmpty() ? "No hay gustos registrados." : sb.toString());
-    }
-
-    private void guardarCambios() {
-        SharedPreferences prefs = getSharedPreferences("BaseDatosAgenda", MODE_PRIVATE);
-        prefs.edit().putString("agendas_guardadas", new Gson().toJson(listaAgendas)).apply();
-    }
-
-    private void cargarAgendas() {
-        SharedPreferences prefs = getSharedPreferences("BaseDatosAgenda", MODE_PRIVATE);
-        String json = prefs.getString("agendas_guardadas", null);
-        Type type = new TypeToken<ArrayList<AgendaUser>>() {}.getType();
-        listaAgendas = new Gson().fromJson(json, type);
-        if (listaAgendas == null) listaAgendas = new ArrayList<>();
     }
 }

@@ -3,7 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center"
     android:background="@color/bg_dark"
     android:padding="24dp"
     android:paddingTop="48dp">
@@ -15,37 +14,99 @@
         android:textColor="@color/neon_purple"
         android:textSize="24sp"
         android:textStyle="bold"
-        android:layout_marginBottom="16dp" />
-
-    <EditText
-        android:id="@+id/etNuevoGusto"
-        style="@style/FuturisticEditText"
-        android:hint="Ej. Cine, Programar, Música" />
-
-    <Button
-        android:id="@+id/btnAgregarGusto"
-        style="@style/FuturisticButton"
-        android:backgroundTint="@color/neon_cyan"
-        android:textColor="@color/bg_dark"
-        android:text="AGREGAR GUSTO"
-        android:layout_marginBottom="24dp"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Gustos Registrados:"
-        android:textColor="@color/neon_cyan"
-        android:layout_marginBottom="8dp"/>
+        android:layout_gravity="center"
+        android:layout_marginBottom="24dp" />
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
-        <TextView
-            android:id="@+id/tvListaGustos"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/text_light"
-            android:textSize="18sp" />
+            android:orientation="vertical">
+
+            <!-- Carros -->
+            <CheckBox
+                android:id="@+id/cbCarros"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Carros"
+                android:textColor="@color/text_light"
+                android:buttonTint="@color/neon_cyan" />
+
+            <!-- Motos -->
+            <CheckBox
+                android:id="@+id/cbMotos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Motos"
+                android:textColor="@color/text_light"
+                android:buttonTint="@color/neon_cyan" />
+
+            <!-- Música -->
+            <CheckBox
+                android:id="@+id/cbMusica"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Música"
+                android:textColor="@color/text_light"
+                android:buttonTint="@color/neon_cyan" />
+
+            <!-- Comida -->
+            <CheckBox
+                android:id="@+id/cbComida"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Comida"
+                android:textColor="@color/text_light"
+                android:buttonTint="@color/neon_cyan" />
+
+            <!-- Deportes -->
+            <CheckBox
+                android:id="@+id/cbDeportes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Deportes"
+                android:textColor="@color/text_light"
+                android:buttonTint="@color/neon_cyan" />
+
+            <!-- Materias -->
+            <CheckBox
+                android:id="@+id/cbMaterias"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Materias"
+                android:textColor="@color/text_light"
+                android:buttonTint="@color/neon_cyan" />
+
+            <!-- Videojuegos -->
+            <CheckBox
+                android:id="@+id/cbVideojuegos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Videojuegos"
+                android:textColor="@color/text_light"
+                android:buttonTint="@color/neon_cyan" />
+
+            <!-- Viajes -->
+            <CheckBox
+                android:id="@+id/cbViajes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Viajes"
+                android:textColor="@color/text_light"
+                android:buttonTint="@color/neon_cyan" />
+
+        </LinearLayout>
     </ScrollView>
+
+    <Button
+        android:id="@+id/btnGuardarGustos"
+        style="@style/FuturisticButton"
+        android:backgroundTint="@color/neon_cyan"
+        android:text="GUARDAR GUSTOS"
+        android:layout_marginTop="16dp" />
+
 </LinearLayout>

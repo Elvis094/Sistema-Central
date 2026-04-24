@@ -3,7 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center"
     android:background="@color/bg_dark"
     android:padding="24dp"
     android:paddingTop="48dp">
@@ -11,48 +10,109 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="MIS PREFERENCIAS"
+        android:text="DETALLE DE PREFERENCIAS"
         android:textColor="@color/neon_purple"
         android:textSize="24sp"
         android:textStyle="bold"
-        android:layout_marginBottom="16dp" />
-
-    <EditText
-        android:id="@+id/etPrefClave"
-        style="@style/FuturisticEditText"
-        android:layout_marginBottom="8dp"
-        android:hint="Tipo (Ej. Color, Comida, Deporte)" />
-
-    <EditText
-        android:id="@+id/etPrefValor"
-        style="@style/FuturisticEditText"
-        android:layout_marginBottom="16dp"
-        android:hint="Tu preferencia (Ej. Azul, Pizza, Fútbol)" />
-
-    <Button
-        android:id="@+id/btnAgregarPreferencia"
-        style="@style/FuturisticButton"
-        android:backgroundTint="@color/neon_cyan"
-        android:textColor="@color/bg_dark"
-        android:text="AGREGAR PREFERENCIA"
-        android:layout_marginBottom="24dp"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Preferencias Registradas:"
-        android:textColor="@color/neon_cyan"
-        android:layout_marginBottom="8dp"/>
+        android:layout_gravity="center"
+        android:layout_marginBottom="24dp" />
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
-        <TextView
-            android:id="@+id/tvListaPreferencias"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/text_light"
-            android:textSize="18sp" />
+            android:orientation="vertical">
+
+            <!-- Carros Section -->
+            <TextView
+                android:id="@+id/tvHeaderCarros"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Carros Favoritos"
+                android:textColor="@color/neon_cyan"
+                android:textSize="18sp"
+                android:layout_marginTop="8dp" />
+            <CheckBox android:id="@+id/pref_car_mazda" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Mazda" android:textColor="@color/text_light" android:buttonTint="@color/neon_cyan" />
+            <CheckBox android:id="@+id/pref_car_toyota" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Toyota" android:textColor="@color/text_light" android:buttonTint="@color/neon_cyan" />
+            <CheckBox android:id="@+id/pref_car_ford" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Ford" android:textColor="@color/text_light" android:buttonTint="@color/neon_cyan" />
+
+            <!-- Motos Section -->
+            <TextView
+                android:id="@+id/tvHeaderMotos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Motos Favoritas"
+                android:textColor="@color/neon_cyan"
+                android:textSize="18sp"
+                android:layout_marginTop="16dp" />
+            <CheckBox android:id="@+id/pref_moto_yamaha" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Yamaha" android:textColor="@color/text_light" android:buttonTint="@color/neon_cyan" />
+            <CheckBox android:id="@+id/pref_moto_kawasaki" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Kawasaki" android:textColor="@color/text_light" android:buttonTint="@color/neon_cyan" />
+            <CheckBox android:id="@+id/pref_moto_ducati" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Ducati" android:textColor="@color/text_light" android:buttonTint="@color/neon_cyan" />
+
+            <!-- Música Section -->
+            <TextView
+                android:id="@+id/tvHeaderMusica"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Géneros Musicales"
+                android:textColor="@color/neon_cyan"
+                android:textSize="18sp"
+                android:layout_marginTop="16dp" />
+            <CheckBox android:id="@+id/pref_mus_rock" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Rock" android:textColor="@color/text_light" android:buttonTint="@color/neon_cyan" />
+            <CheckBox android:id="@+id/pref_mus_pop" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Pop" android:textColor="@color/text_light" android:buttonTint="@color/neon_cyan" />
+            <CheckBox android:id="@+id/pref_mus_jazz" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Jazz" android:textColor="@color/text_light" android:buttonTint="@color/neon_cyan" />
+
+            <!-- Comida Section -->
+            <TextView
+                android:id="@+id/tvHeaderComida"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Comida Favorita"
+                android:textColor="@color/neon_cyan"
+                android:textSize="18sp"
+                android:layout_marginTop="16dp" />
+            <CheckBox android:id="@+id/pref_com_pizza" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Pizza" android:textColor="@color/text_light" android:buttonTint="@color/neon_cyan" />
+            <CheckBox android:id="@+id/pref_com_hamburguesa" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Hamburguesa" android:textColor="@color/text_light" android:buttonTint="@color/neon_cyan" />
+            <CheckBox android:id="@+id/pref_com_sushi" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Sushi" android:textColor="@color/text_light" android:buttonTint="@color/neon_cyan" />
+
+            <!-- Deportes Section -->
+            <TextView
+                android:id="@+id/tvHeaderDeportes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Deportes Favoritos"
+                android:textColor="@color/neon_cyan"
+                android:textSize="18sp"
+                android:layout_marginTop="16dp" />
+            <CheckBox android:id="@+id/pref_dep_futbol" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Fútbol" android:textColor="@color/text_light" android:buttonTint="@color/neon_cyan" />
+            <CheckBox android:id="@+id/pref_dep_basket" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Basket" android:textColor="@color/text_light" android:buttonTint="@color/neon_cyan" />
+            <CheckBox android:id="@+id/pref_dep_tenis" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Tenis" android:textColor="@color/text_light" android:buttonTint="@color/neon_cyan" />
+
+            <!-- Materias Section -->
+            <TextView
+                android:id="@+id/tvHeaderMaterias"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Materias Favoritas"
+                android:textColor="@color/neon_cyan"
+                android:textSize="18sp"
+                android:layout_marginTop="16dp" />
+            <CheckBox android:id="@+id/pref_mat_calculo" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Cálculo" android:textColor="@color/text_light" android:buttonTint="@color/neon_cyan" />
+            <CheckBox android:id="@+id/pref_mat_programacion" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Programación" android:textColor="@color/text_light" android:buttonTint="@color/neon_cyan" />
+            <CheckBox android:id="@+id/pref_mat_fisica" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Física" android:textColor="@color/text_light" android:buttonTint="@color/neon_cyan" />
+
+        </LinearLayout>
     </ScrollView>
+
+    <Button
+        android:id="@+id/btnGuardarPreferencias"
+        style="@style/FuturisticButton"
+        android:backgroundTint="@color/neon_cyan"
+        android:text="GUARDAR PREFERENCIAS"
+        android:layout_marginTop="16dp" />
+
 </LinearLayout>

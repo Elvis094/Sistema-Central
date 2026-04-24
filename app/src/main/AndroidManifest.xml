@@ -14,15 +14,9 @@
         android:windowSoftInputMode="adjustResize"
         tools:targetApi="31">
 
-
         <activity
             android:name=".ui.main.MainActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:exported="false" />
 
         <activity android:name=".ui.agenda.SearchUserActivity" android:exported="false" />
         <activity android:name=".ui.admin.AdminMainActivity" android:exported="false" />
@@ -30,7 +24,15 @@
         <activity android:name=".ui.admin.AdminModifyActivity" android:exported="false" />
         <activity android:name=".ui.admin.AdminVisualizerActivity" android:exported="false" />
 
-        <activity android:name=".ui.user.LoginActivity" android:exported="false" />
+        <activity
+            android:name=".ui.user.LoginActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
         <activity android:name=".ui.user.UserMainActivity" android:exported="false" />
 
         <activity android:name=".ui.agenda.AgendaMainActivity" android:exported="false" />

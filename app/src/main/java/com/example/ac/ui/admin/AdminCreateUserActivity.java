@@ -2,67 +2,66 @@ package com.example.ac.ui.admin;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.ac.R;
-import com.example.ac.models.UsuarioCredencial;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-import java.lang.reflect.Type;
-import java.util.ArrayList;
 
 public class AdminCreateUserActivity extends AppCompatActivity {
 
-    private EditText etCedula, etNombre, etContrasena;
-    private ArrayList<UsuarioCredencial> listaCredenciales;
+    private EditText etCrearCedula, etCrearNombre, etCrearContrasena;
+    private Button btnRegistrar;
+    private CheckBox cbRolAdmin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_create_user);
 
-        etCedula = findViewById(R.id.etCrearCedula);
-        etNombre = findViewById(R.id.etCrearNombre);
-        etContrasena = findViewById(R.id.etCrearContrasena);
+        // 1. Enlazamos los componentes del XML
+        etCrearCedula = findViewById(R.id.etCrearCedula);
+        etCrearNombre = findViewById(R.id.etCrearNombre);
+        etCrearContrasena = findViewById(R.id.etCrearContrasena);
+        cbRolAdmin = findViewById(R.id.cbRolAdmin); // El CheckBox que agregaste
+        btnRegistrar = findViewById(R.id.btnGuardarNuevoUsuario);
 
-        cargarCredenciales();
+        btnRegistrar.setOnClickListener(v -> {
+            String cedula = etCrearCedula.getText().toString().trim();
+            String nombre = etCrearNombre.getText().toString().trim();
+            String contrasena = etCrearContrasena.getText().toString().trim();
 
-        findViewById(R.id.btnGuardarNuevoUsuario).setOnClickListener(v -> guardarUsuario());
-    }
+            // 2. Verificamos si el administrador marcó la casilla
+            boolean esAdmin = cbRolAdmin.isChecked();
+            String rol = esAdmin ? "ADMIN" : "USER";
 
-    private void guardarUsuario() {
-        String cedula = etCedula.getText().toString().trim();
-        String nombre = etNombre.getText().toString().trim();
-        String contrasena = etContrasena.getText().toString().trim();
-
-        if (cedula.isEmpty() || nombre.isEmpty() || contrasena.isEmpty()) {
-            Toast.makeText(this, "Por favor llena todos los campos", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        // Verificar que la cédula no exista ya
-        for (UsuarioCredencial u : listaCredenciales) {
-            if (u.getCedula().equals(cedula)) {
-                Toast.makeText(this, "Esta cédula ya está registrada", Toast.LENGTH_SHORT).show();
+            if (cedula.isEmpty() || contrasena.isEmpty() || nombre.isEmpty()) {
+                Toast.makeText(this, "Todos los campos son obligatorios", Toast.LENGTH_SHORT).show();
                 return;
             }
-        }
 
-        // Agregar y guardar
-        listaCredenciales.add(new UsuarioCredencial(cedula, nombre, contrasena));
-        SharedPreferences prefs = getSharedPreferences("CredencialesUsuarios", MODE_PRIVATE);
-        prefs.edit().putString("credenciales_guardadas", new Gson().toJson(listaCredenciales)).apply();
+            // 3. GUARDAMOS EN SharedPreferences
+            SharedPreferences prefs = getSharedPreferences("MisUsuarios", MODE_PRIVATE);
+            SharedPreferences.Editor editor = prefs.edit();
 
-        Toast.makeText(this, "Usuario registrado con éxito", Toast.LENGTH_SHORT).show();
-        finish(); // Vuelve al menú de Admin
-    }
+            // Guardamos la contraseña usando la cédula como llave
+            editor.putString(cedula, contrasena);
 
-    private void cargarCredenciales() {
-        SharedPreferences prefs = getSharedPreferences("CredencialesUsuarios", MODE_PRIVATE);
-        String json = prefs.getString("credenciales_guardadas", null);
-        Type type = new TypeToken<ArrayList<UsuarioCredencial>>() {}.getType();
-        listaCredenciales = new Gson().fromJson(json, type);
-        if (listaCredenciales == null) listaCredenciales = new ArrayList<>();
+            // ¡ESTO ES LO NUEVO!: Guardamos el ROL del usuario usando su cédula + un sufijo
+            // Así, al loguearse, buscaremos "cedula_rol" para saber a dónde mandarlo
+            editor.putString(cedula + "_rol", rol);
+
+            // Opcional: Guardamos el nombre
+            editor.putString(cedula + "_nombre", nombre);
+
+            editor.apply();
+
+            Toast.makeText(this, "Registro exitoso como: " + rol, Toast.LENGTH_SHORT).show();
+
+            // 4. Cerramos la pantalla para volver atrás
+            finish();
+        });
     }
 }

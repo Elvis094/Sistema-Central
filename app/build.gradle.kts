@@ -4,16 +4,12 @@ plugins {
 
 android {
     namespace = "com.example.ac"
-    compileSdk {
-        version = release(36) {
-            minorApiLevel = 1
-        }
-    }
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.example.ac"
         minSdk = 24
-        targetSdk = 36
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
@@ -37,6 +33,7 @@ android {
 
 dependencies {
     implementation(libs.appcompat)
+    implementation(libs.firebase.inappmessaging)
     implementation(libs.material)
     implementation(libs.activity)
     implementation(libs.constraintlayout)
