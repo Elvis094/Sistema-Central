@@ -1,82 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/bg_dark">
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:gravity="center"
-        android:background="@color/bg_dark"
-        android:padding="24dp"
-        android:paddingTop="48dp">
+        android:padding="24dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="INFORMACIÓN PERSONAL"
-            android:textColor="@color/neon_cyan"
-            android:textSize="24sp"
+            android:textSize="20sp"
             android:textStyle="bold"
             android:layout_marginBottom="24dp" />
 
-        <EditText android:id="@+id/etInfoNombre" style="@style/FuturisticEditText" android:hint="Nombre Completo"/>
-
-        <EditText android:id="@+id/etInfoTelefono" style="@style/FuturisticEditText" android:hint="Teléfono" android:inputType="phone"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Género"
-            android:textColor="@color/text_light"
-            android:textSize="18sp"
-            android:layout_marginBottom="8dp" />
-
-        <RadioGroup
-            android:id="@+id/rgInfoGenero"
+        <EditText
+            android:id="@+id/etInfoNumero"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center"
-            android:layout_marginBottom="16dp">
+            android:hint="Número de Teléfono"
+            android:inputType="phone" />
 
-            <RadioButton
-                android:id="@+id/rbFemenino"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Femenino"
-                android:layout_margin="8dp"
-                android:buttonTint="@color/neon_purple"
-                android:textColor="@color/text_light"
-                android:textSize="18sp"
-                android:layout_weight="1"/>
+        <EditText
+            android:id="@+id/etInfoEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Email"
+            android:inputType="textEmailAddress"
+            android:layout_marginTop="12dp" />
 
-            <RadioButton
-                android:id="@+id/rbMasculino"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Masculino"
-                android:layout_margin="8dp"
-                android:buttonTint="@color/neon_cyan"
-                android:textColor="@color/text_light"
-                android:textSize="18sp"
-                android:layout_weight="1"/>
-        </RadioGroup>
+        <EditText
+            android:id="@+id/etInfoSexo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Sexo"
+            android:layout_marginTop="12dp" />
 
-        <EditText android:id="@+id/etInfoDireccion" style="@style/FuturisticEditText" android:hint="Dirección"/>
-        <EditText android:id="@+id/etInfoLugar" style="@style/FuturisticEditText" android:hint="Ciudad de Residencia"/>
-        <EditText android:id="@+id/etInfoCorreo" style="@style/FuturisticEditText" android:hint="Correo Electrónico" android:inputType="textEmailAddress"/>
-        <EditText android:id="@+id/etInfoSangre" style="@style/FuturisticEditText" android:hint="Tipo de Sangre"/>
-        <EditText android:id="@+id/etInfoAnio" style="@style/FuturisticEditText" android:hint="Año de Nacimiento" android:inputType="number"/>
+        <EditText
+            android:id="@+id/etInfoDireccion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Dirección"
+            android:layout_marginTop="12dp" />
+
+        <EditText
+            android:id="@+id/etInfoResidencia"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Lugar de Residencia"
+            android:layout_marginTop="12dp" />
 
         <Button
-            android:id="@+id/btnGuardarInfoPersonal"
-            style="@style/FuturisticButton"
-            android:backgroundTint="@color/neon_cyan"
-            android:textColor="@color/bg_dark"
-            android:text="GUARDAR DATOS"
-            android:layout_marginTop="16dp"/>
+            android:id="@+id/btnGuardarInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="GUARDAR"
+            android:layout_marginTop="24dp" />
     </LinearLayout>
 </ScrollView>

@@ -1,112 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/bg_dark"
-    android:padding="24dp"
-    android:paddingTop="48dp">
+    android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="MIS GUSTOS"
-        android:textColor="@color/neon_purple"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:layout_gravity="center"
-        android:layout_marginBottom="24dp" />
-
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp">
 
-        <LinearLayout
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="MIS GUSTOS"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="24dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Vehículos preferidos:" />
+        <RadioGroup
+            android:id="@+id/rgVehiculos"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="horizontal">
+            <RadioButton android:id="@+id/rbCarro" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Carro" />
+            <RadioButton android:id="@+id/rbMoto" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Moto" />
+            <RadioButton android:id="@+id/rbTriciclo" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Triciclo" />
+        </RadioGroup>
 
-            <!-- Carros -->
-            <CheckBox
-                android:id="@+id/cbCarros"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Carros"
-                android:textColor="@color/text_light"
-                android:buttonTint="@color/neon_cyan" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Comida favorita:"
+            android:layout_marginTop="16dp" />
+        <RadioGroup
+            android:id="@+id/rgComida"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <RadioButton android:id="@+id/rbPizza" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Pizza" />
+            <RadioButton android:id="@+id/rbHamburguesa" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Hamburguesa" />
+            <RadioButton android:id="@+id/rbSushi" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Sushi" />
+        </RadioGroup>
 
-            <!-- Motos -->
-            <CheckBox
-                android:id="@+id/cbMotos"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Motos"
-                android:textColor="@color/text_light"
-                android:buttonTint="@color/neon_cyan" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Género Musical:"
+            android:layout_marginTop="16dp" />
+        <RadioGroup
+            android:id="@+id/rgMusica"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <RadioButton android:id="@+id/rbRock" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Rock" />
+            <RadioButton android:id="@+id/rbPop" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Pop" />
+            <RadioButton android:id="@+id/rbJazz" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Jazz" />
+        </RadioGroup>
 
-            <!-- Música -->
-            <CheckBox
-                android:id="@+id/cbMusica"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Música"
-                android:textColor="@color/text_light"
-                android:buttonTint="@color/neon_cyan" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Deporte favorito:"
+            android:layout_marginTop="16dp" />
+        <RadioGroup
+            android:id="@+id/rgDeporte"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <RadioButton android:id="@+id/rbFutbol" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Fútbol" />
+            <RadioButton android:id="@+id/rbBasket" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Basket" />
+            <RadioButton android:id="@+id/rbTenis" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Tenis" />
+        </RadioGroup>
 
-            <!-- Comida -->
-            <CheckBox
-                android:id="@+id/cbComida"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Comida"
-                android:textColor="@color/text_light"
-                android:buttonTint="@color/neon_cyan" />
-
-            <!-- Deportes -->
-            <CheckBox
-                android:id="@+id/cbDeportes"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Deportes"
-                android:textColor="@color/text_light"
-                android:buttonTint="@color/neon_cyan" />
-
-            <!-- Materias -->
-            <CheckBox
-                android:id="@+id/cbMaterias"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Materias"
-                android:textColor="@color/text_light"
-                android:buttonTint="@color/neon_cyan" />
-
-            <!-- Videojuegos -->
-            <CheckBox
-                android:id="@+id/cbVideojuegos"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Videojuegos"
-                android:textColor="@color/text_light"
-                android:buttonTint="@color/neon_cyan" />
-
-            <!-- Viajes -->
-            <CheckBox
-                android:id="@+id/cbViajes"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Viajes"
-                android:textColor="@color/text_light"
-                android:buttonTint="@color/neon_cyan" />
-
-        </LinearLayout>
-    </ScrollView>
-
-    <Button
-        android:id="@+id/btnGuardarGustos"
-        style="@style/FuturisticButton"
-        android:backgroundTint="@color/neon_cyan"
-        android:text="GUARDAR GUSTOS"
-        android:layout_marginTop="16dp" />
-
-</LinearLayout>
+        <Button
+            android:id="@+id/btnGuardarGustos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="GUARDAR GUSTOS"
+            android:layout_marginTop="24dp" />
+    </LinearLayout>
+</ScrollView>

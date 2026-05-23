@@ -3,38 +3,32 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center"
-    android:background="@color/bg_dark"
-    android:padding="24dp"
-    android:paddingTop="48dp">
+    android:padding="24dp">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="BASE DE DATOS"
-        android:textColor="@color/neon_cyan"
-        android:textSize="28sp"
+        android:text="VISUALIZAR BASE DE DATOS"
+        android:textSize="20sp"
         android:textStyle="bold"
-        android:layout_marginBottom="24dp" />
+        android:layout_marginBottom="16dp" />
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:layout_marginBottom="16dp">
-
+        android:layout_weight="1">
         <TextView
-            android:id="@+id/tvListaUsuariosAdmin"
+            android:id="@+id/tvListaDatos"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/text_light"
-            android:textSize="18sp"
-            android:text="Cargando usuarios..." />
+            android:text="Cargando datos..."
+            android:textSize="16sp" />
     </ScrollView>
 
     <Button
-        android:id="@+id/btnVolverVisualizador"
-        style="@style/FuturisticButton"
-        android:backgroundTint="@color/neon_purple"
-        android:text="VOLVER AL MENÚ ADMIN" />
+        android:id="@+id/btnVolverAdmin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="VOLVER"
+        android:layout_marginTop="16dp" />
 </LinearLayout>

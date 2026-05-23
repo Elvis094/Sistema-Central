@@ -13,10 +13,6 @@ public class AdminMainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_main);
 
-        findViewById(R.id.btnCrearUsuario).setOnClickListener(v -> {
-            startActivity(new Intent(this, AdminCreateUserActivity.class));
-        });
-
         findViewById(R.id.btnVerBaseDatos).setOnClickListener(v -> {
             startActivity(new Intent(this, AdminVisualizerActivity.class));
         });
@@ -26,8 +22,7 @@ public class AdminMainActivity extends AppCompatActivity {
         });
 
         findViewById(R.id.btnCerrarSesionAdmin).setOnClickListener(v -> {
-            Intent intent = new Intent(AdminMainActivity.this, LoginActivity.class);
-            startActivity(intent);
+            startActivity(new Intent(this, LoginActivity.class));
             finish();
         });
     }

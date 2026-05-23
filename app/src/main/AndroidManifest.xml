@@ -15,16 +15,6 @@
         tools:targetApi="31">
 
         <activity
-            android:name=".ui.main.MainActivity"
-            android:exported="false" />
-
-        <activity android:name=".ui.agenda.SearchUserActivity" android:exported="false" />
-        <activity android:name=".ui.admin.AdminMainActivity" android:exported="false" />
-        <activity android:name=".ui.admin.AdminCreateUserActivity" android:exported="false" />
-        <activity android:name=".ui.admin.AdminModifyActivity" android:exported="false" />
-        <activity android:name=".ui.admin.AdminVisualizerActivity" android:exported="false" />
-
-        <activity
             android:name=".ui.user.LoginActivity"
             android:exported="true">
             <intent-filter>
@@ -33,14 +23,19 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".ui.user.RegisterActivity" android:exported="false" />
         <activity android:name=".ui.user.UserMainActivity" android:exported="false" />
+        <activity android:name=".ui.user.PersonalInfoActivity" android:exported="false" />
+        <activity android:name=".ui.user.LikesActivity" android:exported="false" />
+        <activity android:name=".ui.user.PreferencesActivity" android:exported="false" />
 
-        <activity android:name=".ui.agenda.AgendaMainActivity" android:exported="false" />
-        <activity android:name=".ui.agenda.PersonalInfoActivity" android:exported="false" />
-        <activity android:name=".ui.agenda.LikesActivity" android:exported="false" />
-        <activity android:name=".ui.agenda.PreferencesActivity" android:exported="false" />
+        <activity android:name=".ui.admin.AdminMainActivity" android:exported="false" />
+        <activity android:name=".ui.admin.AdminVisualizerActivity" android:exported="false" />
+        <activity android:name=".ui.admin.AdminModifyActivity" android:exported="false" />
 
         <activity android:name=".ui.calculator.CalculadoraActivity" android:exported="false" />
+
+        <activity android:name=".MainActivity" android:exported="false" />
 
     </application>
 

@@ -1,65 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center"
-    android:background="@color/bg_dark"
-    android:padding="24dp"
-    android:paddingTop="48dp">
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="MODIFICAR USUARIO"
-        android:textColor="@color/neon_purple"
-        android:textSize="26sp"
-        android:textStyle="bold"
-        android:layout_marginBottom="24dp" />
-
-    <EditText
-        android:id="@+id/etModificarBusquedaCedula"
-        style="@style/FuturisticEditText"
-        android:backgroundTint="@color/neon_cyan"
-        android:textColor="@color/neon_cyan"
-        android:hint="Ingrese Cédula a buscar"
-        android:inputType="number" />
-
-    <Button
-        android:id="@+id/btnModificarBuscar"
-        style="@style/FuturisticButton"
-        android:backgroundTint="@color/neon_cyan"
-        android:textColor="@color/bg_dark"
-        android:text="BUSCAR USUARIO"
-        android:layout_marginBottom="32dp" />
+    android:layout_height="match_parent">
 
     <LinearLayout
-        android:id="@+id/layoutDatosModificar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:visibility="gone">
+        android:padding="24dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Datos del Usuario:"
-            android:textColor="@color/text_light"
-            android:layout_marginBottom="8dp" />
+            android:text="MODIFICAR / ELIMINAR"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="24dp" />
 
-        <EditText android:id="@+id/etModificarNombre" style="@style/FuturisticEditText" android:hint="Nuevo Nombre" />
-        <EditText android:id="@+id/etModificarContrasena" style="@style/FuturisticEditText" android:hint="Nueva Contraseña" />
+        <EditText
+            android:id="@+id/etModBusquedaCedula"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Cédula a buscar"
+            android:inputType="number" />
 
         <Button
-            android:id="@+id/btnGuardarModificacion"
-            style="@style/FuturisticButton"
-            android:text="ACTUALIZAR DATOS" />
+            android:id="@+id/btnModBuscar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="BUSCAR" />
 
-        <Button
-            android:id="@+id/btnEliminarUsuario"
-            style="@style/FuturisticButton"
-            android:backgroundTint="@color/red_error"
-            android:layout_marginTop="16dp"
-            android:text="ELIMINAR USUARIO DEFINITIVAMENTE" />
+        <LinearLayout
+            android:id="@+id/layoutCamposMod"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone"
+            android:layout_marginTop="24dp">
+
+            <EditText
+                android:id="@+id/etModNombre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nuevo Nombre" />
+
+            <EditText
+                android:id="@+id/etModContrasena"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nueva Contraseña"
+                android:layout_marginTop="12dp" />
+
+            <Button
+                android:id="@+id/btnModActualizar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="ACTUALIZAR"
+                android:layout_marginTop="16dp" />
+
+            <Button
+                android:id="@+id/btnModEliminar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="ELIMINAR USUARIO"
+                android:backgroundTint="#FF0000"
+                android:textColor="#FFFFFF"
+                android:layout_marginTop="8dp" />
+        </LinearLayout>
     </LinearLayout>
-</LinearLayout>
+</ScrollView>

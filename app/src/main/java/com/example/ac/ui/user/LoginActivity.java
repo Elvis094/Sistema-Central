@@ -1,15 +1,16 @@
 package com.example.ac.ui.user;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
+import com.example.ac.AdminSQLiteOpenHelper;
 import com.example.ac.R;
-import com.example.ac.ui.admin.AdminCreateUserActivity;
 import com.example.ac.ui.admin.AdminMainActivity;
 
 public class LoginActivity extends AppCompatActivity {
@@ -28,58 +29,42 @@ public class LoginActivity extends AppCompatActivity {
         btnLoginIngresar = findViewById(R.id.btnLoginIngresar);
         tvIrRegistro = findViewById(R.id.tvIrRegistro);
 
-        btnLoginIngresar.setOnClickListener(view -> {
+        btnLoginIngresar.setOnClickListener(v -> {
             String cedula = etCedula.getText().toString().trim();
             String contrasena = etContrasena.getText().toString().trim();
 
             if (cedula.isEmpty() || contrasena.isEmpty()) {
-                Toast.makeText(this, "Llena ambos campos", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Completa todos los campos", Toast.LENGTH_SHORT).show();
                 return;
             }
 
-            // --- LÓGICA DE SESIÓN ---
-            SharedPreferences usuariosPrefs = getSharedPreferences("MisUsuarios", MODE_PRIVATE);
+            AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(this, "agenda", null, 1);
+            SQLiteDatabase db = admin.getReadableDatabase();
 
-            // Caso A: Admin Maestro
-            if (cedula.equals("0000") && contrasena.equals("admin123")) {
-                guardarSesion(cedula, "Administrador");
-                startActivity(new Intent(this, AdminMainActivity.class));
-                finish();
-            }
-            // Caso B: Usuarios registrados por el Admin
-            else {
-                String passGuardada = usuariosPrefs.getString(cedula, "");
-                if (!passGuardada.isEmpty() && passGuardada.equals(contrasena)) {
+            Cursor cursor = db.rawQuery("select rol, nombre from usuarios where cedula='" + cedula + "' and contrasena='" + contrasena + "'", null);
 
-                    // Verificamos si es un Admin creado o un Usuario normal
-                    String rol = usuariosPrefs.getString(cedula + "_rol", "USER");
-                    String nombre = usuariosPrefs.getString(cedula + "_nombre", "Usuario");
-
-                    guardarSesion(cedula, nombre); // Guardamos quién entró
-
-                    if (rol.equals("ADMIN")) {
-                        startActivity(new Intent(this, AdminMainActivity.class));
-                    } else {
-                        startActivity(new Intent(this, UserMainActivity.class));
-                    }
-                    finish();
+            if (cursor.moveToFirst()) {
+                String rol = cursor.getString(0);
+                String nombre = cursor.getString(1);
+                
+                Intent intent;
+                if (rol.equals("ADMIN")) {
+                    intent = new Intent(this, AdminMainActivity.class);
                 } else {
-                    Toast.makeText(this, "Credenciales incorrectas", Toast.LENGTH_SHORT).show();
+                    intent = new Intent(this, UserMainActivity.class);
                 }
+                intent.putExtra("user_id", cedula);
+                intent.putExtra("user_name", nombre);
+                startActivity(intent);
+                finish();
+            } else {
+                Toast.makeText(this, "Usuario o contraseña incorrectos", Toast.LENGTH_SHORT).show();
             }
+            db.close();
         });
 
-        tvIrRegistro.setOnClickListener(view -> {
-            startActivity(new Intent(this, AdminCreateUserActivity.class));
+        tvIrRegistro.setOnClickListener(v -> {
+            startActivity(new Intent(this, RegisterActivity.class));
         });
-    }
-
-    // Función para que el nombre no sea NULL en otras pantallas
-    private void guardarSesion(String cedula, String nombre) {
-        SharedPreferences session = getSharedPreferences("SesionActiva", MODE_PRIVATE);
-        SharedPreferences.Editor editor = session.edit();
-        editor.putString("cedula_logueada", cedula);
-        editor.putString("nombre_logueado", nombre);
-        editor.apply();
     }
 }
